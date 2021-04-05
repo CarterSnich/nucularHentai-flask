@@ -44,10 +44,7 @@ $(document).ready(function () {
                         </div>
                         <p class="mb-1">${doujin['title_pretty']}</p>
                         <small class="text-muted">${doujin['title_release']}</small>
-                        <br>
-                        <small class="text-muted">https://nhentai.net/g/${doujin['id']}</small>
-                        <br>
-                        ${tags_html}
+                        <br>${tags_html}
                     </a>
                 `)
             })
