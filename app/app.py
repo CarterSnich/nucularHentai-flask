@@ -19,13 +19,22 @@ def index():
 def nuke_codes():
     if request.method == 'POST':
         data = request.get_json()
-        return data
+        code = data['code']
+        print(data)
+        if (Hentai.exists(code)):
+            doujin = Hentai(code)
+            print(f"Success! {code}")
+            print(doujin)
+            return {
+                'id' : doujin.id,
+                'title_release' : doujin.title(),
+                'title_pretty' : doujin.title(Format.Pretty),
+                'tags' : [tag.name for tag in doujin.tag],
+                'poster_link' : doujin.image_urls[0]
+            }
+        else:
+            return None
     return None
-
-
-class NukeCode (Form):
-    premature_code = TextAreaField()
-
 
 
 if __name__ == '__main__':

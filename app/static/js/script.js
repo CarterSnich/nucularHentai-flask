@@ -1,36 +1,59 @@
-// regex pattern (?<!\d)\d{6}(?!\d)
+// regex pattern (?<!\d)\d{1,6}(?!\d)
+
+
 $(document).ready(function () {
+    console.log('DOM ready.');
 
     $('form').on('submit', function (e) {
+        e.preventDefault(); // prevents the form to action by itself
 
-        e.preventDefault();
+        // breaks down all 5 and 6 digit nuke codes
+        let broken_codes = $(this).find('textarea').val().match(/(?<!\d)\d{1,6}(?!\d)/g);
 
-        let broken_codes = $(this).find('textarea').val().match(/(?<!\d)\d{6}(?!\d)/g);
+        $('#aftermath-list h4').html(`Found ${broken_codes.length} nuke codes!`);
+        // $('#aftermath-list div.spinner-border').show();
 
-        broken_codes.forEach((code, index) => {
-            $('#aftermath-list ul').append(`
-                <li class="list-group-item list-group-item-${index % 2 == 0 ? 'secondary' : 'dark'}">
-                    <code>${code}</code>
-                    <a href="http://nhentai.net/g/${code}">http://nhentai.net/g/${code}</a>
-                </li>
-            `)
-        })
+        if (broken_codes) {
+            broken_codes.forEach(async (code, index) => {
+                let body = new FormData();
+                body['code'] = code;
 
-        // let body = new FormData();
-        // body['codes'] = broken_codes
+                // retrieve doujin data
+                let response = await fetch('/nuke_codes', {
+                    method: 'POST',
+                    headers: new Headers({
+                        //'Content-Type': 'application/x-www-form-urlencoded'
+                        'Content-Type': 'application/json'
+                    }),
+                    body: JSON.stringify(body)
+                })
+                let doujin = await response.json();
+                console.log(doujin);
 
-        // fetch('/nuke_codes', {
-        //     method: 'POST',
-        //     headers: new Headers({
-        //         //'Content-Type': 'application/x-www-form-urlencoded'
-        //         'Content-Type': 'application/json'
-        //     }),
-        //     body: JSON.stringify(body)
-        // })
-        // .then((res) => res.json())
-        // .then((data) => {
-        //     console.log(data);
-        // })
+                let tags_html;
+
+                doujin['tags'].forEach((tag, index) => {
+                    tags_html += `<small class="badge badge-secondary">${tag}</small>`
+                })
+
+                $('#aftermath-list div.list-group').append(`
+                    <a id="${doujin['id']}" class="list-group-item list-group-item-${index % 2 == 0 ? 'secondary' : 'dark'}" href="https://nhentai.net/g/${doujin['id']}">
+                        <div class="d-flex w-100 justify-content-between">
+                            <img src="${doujin['poster_link']}" class="img-fluid img-thumbnail" width="80%">
+                            <code class="text-muted">${doujin['id']}</code>
+                        </div>
+                        <p class="mb-1">${doujin['title_pretty']}</p>
+                        <small class="text-muted">${doujin['title_release']}</small>
+                        <br>
+                        <small class="text-muted">https://nhentai.net/g/${doujin['id']}</small>
+                        <br>
+                        ${tags_html}
+                    </a>
+                `)
+            })
+        }
+        // $('#aftermath-list div.spinner-border').hide();
+
     })
 
 })
