@@ -1,0 +1,34 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+<form class="form-signin" method="POST">
+    <div class="text-center mb-4">
+        <img class="img-fluid" src="{{ url_for('static', filename = 'img/nucular_logo.png')}}" alt="nucular_logo.png">
+        <h1 class="h3 mb-3 font-weight-normal">nucularHentai</h1>
+        <p>Found so many nuke codes on Facebook but having a problem to manage them because it's mixed up with other stupid texts? No problem! Paste it here and I will nuke 'em for yah!'. &#x1F609</p>
+    </div>
+
+    <div class="form-label-group">
+        <textarea class="form-control" placeholder="Paste nuke codes here . . ." rows="5" required autofocus></textarea>
+    </div>
+
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Nuke code!</button>
+
+    <div class="container mt-4" id="aftermath-list">
+        <ul class="list-group"></ul>
+    </div>
+
+    <p class="mt-5 mb-3 text-muted text-center">
+        Bootstrap 4.5.3
+        <br>
+        Hosted using Heroku
+        <br>
+        DarkWare Corps. @ 2021
+    </p>
+</form>
+
+
+
+
+{% endblock %}
