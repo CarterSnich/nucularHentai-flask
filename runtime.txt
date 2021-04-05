@@ -1,2 +1,1 @@
-GNU nano 4.3                Procfile
 python-3.9.2
