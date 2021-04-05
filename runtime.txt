@@ -1,2 +1,0 @@
-    GNU nano 4.3                runtime.txt
-python-3.7.10
