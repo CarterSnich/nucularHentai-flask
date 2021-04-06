@@ -8,6 +8,7 @@ app = Flask(
     static_url_path="/templates"
 )
 app.debug = True
+app.host = "192.168.254.119"
 
 # route for index page
 @app.route('/', methods=['GET', 'POST'])
@@ -39,4 +40,7 @@ def nuke_codes():
 
 if __name__ == '__main__':
     app.secret_key = '2500'
-    app.run()
+    app.run(
+        host='0.0.0.0',
+        port='8080'
+    )
