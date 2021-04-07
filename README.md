@@ -303,5 +303,4 @@ Damn Have mine to✨
 
 ## Get In Touch
 
-You can reach me at [dev.hentai-chan@outlook.com](mailto:dev.hentai-chan@outlook.com)
-for private questions and inquires that don't belong to the issue tab.
+You can reach me at [jmestreraclosa@gmail.com](mailto:jmestreraclosa@gmail.com)
