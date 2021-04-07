@@ -1,11 +1,11 @@
 from flask import Flask, render_template, flash, redirect, url_for, session, request, logging, jsonify
 from wtforms import Form, StringField, TextAreaField, PasswordField, validators
 from hentai import Hentai, Format
-import requests
-from PIL import Image
 
-# app methods
-from app.app_methods.img_to_data_url import img_to_data_url
+# Removed for the reason that retrieving image from nHentai on Android is now working.
+# import requests
+# from PIL import Image
+# from app.app_methods.img_to_data_url import img_to_data_url
 
 
 
@@ -30,11 +30,11 @@ def nuke_codes():
         print(data)
         if (Hentai.exists(code)):
             doujin = Hentai(code)
-            print(f"Success! {code}")
-            print(doujin)
 
-            poster_img_data = Image.open(requests.get(doujin.image_urls[0], stream=True).raw)
-            poster_blob = img_to_data_url(poster_img_data)
+            print(f"\n#{code} : success")
+            print(f"title : {doujin.title()}")
+            print(f"tags : {[tag.name for tag in doujin.tag]}")
+            print(f"poster url : {doujin.image_urls[0]}\n")
 
             return {
                 'id' : doujin.id,
@@ -42,7 +42,11 @@ def nuke_codes():
                 'title_pretty' : doujin.title(Format.Pretty),
                 'tags' : [tag.name for tag in doujin.tag],
                 'poster_link' : doujin.image_urls[0],
-                'poster_blob' : poster_blob
+                'artist' : [{
+                    'name' : artist.name,
+                    'url' : artist.url
+                } for artist in doujin.artist]
+                # 'poster_blob' : poster_blob
             }
         else:
             return None
