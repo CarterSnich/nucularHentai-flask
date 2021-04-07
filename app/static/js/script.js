@@ -1,5 +1,21 @@
 // regex pattern (?<!\d)\d{1,6}(?!\d)
 
+// removes duplicated values in an array
+function rmDuple(array){
+    if (array) {
+        let uniqueArray = [];
+        
+        // Loop through array values
+        for(i=0; i < array.length; i++){
+            if(uniqueArray.indexOf(array[i]) === -1) {
+                uniqueArray.push(array[i]);
+            }
+        }
+        return uniqueArray;
+    }
+    return null;
+}
+
 
 $(document).ready(function () {
     console.log('DOM ready.');
@@ -8,7 +24,7 @@ $(document).ready(function () {
         e.preventDefault(); // prevents the form to action by itself
 
         // breaks down all 1 and 6 digit nuke codes
-        let broken_codes = $(this).find('textarea').val().match(/(?<!\d)\d{1,6}(?!\d)/g);
+        let broken_codes = rmDuple($(this).find('textarea').val().match(/(?<!\d)\d{1,6}(?!\d)/g));
         console.log(broken_codes);
 
         $('#aftermath-list h4').html(`Found ${broken_codes ? broken_codes.length : 0} nuke code(s)!`);
@@ -37,14 +53,16 @@ $(document).ready(function () {
                         let tags_div = document.createElement('div');
 
                         doujin['tags'].forEach((tag, i) => {
-                            $(tags_div).append(`<small class="badge badge-secondary">${tag}</small>`)
+                            $(tags_div).append(`<small class="badge badge-secondary mr-1">${tag}</small>`)
                         })
 
                         $('#aftermath-list div.list-group').append(`
                             <a id="${doujin['id']}" class="list-group-item list-group-item-${index % 2 == 0 ? 'light' : 'dark'}" href="https://nhentai.net/g/${doujin['id']}">
                                 <div class="d-flex w-100 justify-content-between">
                                     <img src="${doujin['poster_blob']}" class="img-fluid img-thumbnail" width="80%">
-                                    <code class="text-muted">${doujin['id']}</code>
+                                    <div>
+                                        <code class="text-light text-muted badge badge-dark">${doujin['id']}</code>
+                                    </div>
                                 </div>
                                 <p class="mb-1">${doujin['title_pretty']}</p>
                                 <small class="text-muted">${doujin['title_release']}</small>

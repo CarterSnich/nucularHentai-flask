@@ -43,7 +43,6 @@ def nuke_codes():
                 'tags' : [tag.name for tag in doujin.tag],
                 'poster_link' : doujin.image_urls[0],
                 'poster_blob' : poster_blob
-                
             }
         else:
             return None
