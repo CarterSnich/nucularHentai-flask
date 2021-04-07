@@ -303,4 +303,4 @@ Damn Have mine to✨
 
 ## Get In Touch
 
-You can reach me at [jmestreraclosa@gmail.com](mailto:jmestreraclosa@gmail.com)
+Email me at [jmestreraclosa@gmail.com](mailto:jmestreraclosa@gmail.com)
