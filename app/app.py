@@ -1,6 +1,12 @@
 from flask import Flask, render_template, flash, redirect, url_for, session, request, logging, jsonify
 from wtforms import Form, StringField, TextAreaField, PasswordField, validators
 from hentai import Hentai, Format
+import requests
+from PIL import Image
+
+# app methods
+from app.app_methods.img_to_data_url import img_to_data_url
+
 
 
 app = Flask(
@@ -8,7 +14,7 @@ app = Flask(
     static_url_path="/templates"
 )
 app.debug = True
-app.host = "192.168.254.119"
+
 
 # route for index page
 @app.route('/', methods=['GET', 'POST'])
@@ -26,12 +32,18 @@ def nuke_codes():
             doujin = Hentai(code)
             print(f"Success! {code}")
             print(doujin)
+
+            poster_img_data = Image.open(requests.get(doujin.image_urls[0], stream=True).raw)
+            poster_blob = img_to_data_url(poster_img_data)
+
             return {
                 'id' : doujin.id,
                 'title_release' : doujin.title(),
                 'title_pretty' : doujin.title(Format.Pretty),
                 'tags' : [tag.name for tag in doujin.tag],
-                'poster_link' : doujin.image_urls[0]
+                'poster_link' : doujin.image_urls[0],
+                'poster_blob' : poster_blob
+                
             }
         else:
             return None
@@ -40,7 +52,4 @@ def nuke_codes():
 
 if __name__ == '__main__':
     app.secret_key = '2500'
-    app.run(
-        host='0.0.0.0',
-        port='8080'
-    )
+    app.run()

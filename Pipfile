@@ -41,6 +41,7 @@ werkzeug = "==1.0.1"
 wtforms = "==2.3.3"
 zipp = "==3.4.1"
 Faker = "==6.5.0"
+pillow = "*"
 
 [dev-packages]
 
