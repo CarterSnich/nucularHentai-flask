@@ -1,0 +1,24 @@
+{% extends 'layout.html' %}
+
+
+{% block static_includes %}
+
+<!-- style.css -->
+<link rel="stylesheet" href="{{ url_for('static', filename='css/reader.css')}}">
+
+{% endblock %}
+
+
+
+{% block body %}
+
+<div class="container-sm">
+
+    {% if img_urls %}
+        {% for index, img_url in img_urls %}
+            <img class="img-fluid" src="{{ img_url }}" alt="{{ index + 1 }}" loading="lazy">
+        {% endfor %}
+    {% endif %}
+</div>
+
+{% endblock %}
