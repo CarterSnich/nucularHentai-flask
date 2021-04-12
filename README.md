@@ -18,22 +18,26 @@ Did you just stumbled upon a bunch of codes posted on Facebook or somewhere? And
 
 It's easy AF. Just copy-paste your collection on the text field and click launch the codes.
 You will be provided with the following info for each code:
+
 - Title
 - nHentai link
-- Poster
+- Cover
 - Complete title
 - Tags
+- Authors
+- Upload date
+- Pages
 
-You can try use the codes below. It's my collection and it's mixed up with other texts.
+You can try the codes below. It's my collection and it's mixed up with other texts.After showing the results, you can either read it with the lite reader by tapping the cover page or view its on nHentai.net.
 
 <details>
 <br>
 <summary>Example codes (WARNING: 702 titles)</summary>
 This is actually my collection. Tee-hee!
 
-```
+```text
 ====================================
-	Nucular codes
+  Nucular codes
 ====================================
 
 145987
@@ -301,6 +305,15 @@ Damn Have mine to✨
 
 <br>
 
+## Plan for updates
+
+- Add more reliable lazy loading for lite reader (currently using an attribute `loading="lazy"`)
+- Asynchronous loading of results
+
+<br>
+
 ## Get In Touch
 
-Email me at [jmestreraclosa@gmail.com](mailto:jmestreraclosa@gmail.com)
+- Email me at [jmestreraclosa@gmail.com](mailto:jmestreraclosa@gmail.com)
+- Facebook [@jmestreraclosa.25](facebook.com/jmestreraclosa.25)
+- Linkedin [Joe Mar Closa](https://www.linkedin.com/in/joe-mar-c-8244b5135)
