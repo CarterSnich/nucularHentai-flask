@@ -24,8 +24,23 @@
         </div>
 
         <div class="form-label-group">
-            <textarea class="form-control" placeholder="Paste nuke codes here . . ." rows="5" required
-                autofocus></textarea>
+            <textarea name="code-textarea" class="form-control" placeholder="Paste nuke codes here . . ." rows="5"
+                required autofocus></textarea>
+        </div>
+
+        <div class="form-check">
+            <input class="form-check-input" type="radio" id="opt1" name="regex-option" value="5" checked>
+            <label class="form-check-label" for="opt1">
+                Only 5-6 digit codes
+            </label>
+        </div>
+        <div class="form-check mb-3">
+            <input class="form-check-input" type="radio" id="opt2" name="regex-option" value="1">
+            <label class="form-check-label" for="opt2">
+                All 1-6 digit grouped numbers <span class="glyphicon glyphicon-info-sign" data-toggle="tooltip"
+                    data-placement="top" data-html="true"
+                    title="Enable this option to take all grouped numbers ranging from 1-6 digits.<br><br>Example:<br>Part 1 - 256883<br>Part 2 - 256880<br><br>It will take codes [1, 2, 256883, 256880]"></span>
+            </label>
         </div>
 
         <button class="btn btn-lg btn-secondary btn-block" type="submit">Nuke codes!</button>

@@ -1,4 +1,5 @@
-// regex pattern (?<!\d)\d{1,6}(?!\d)
+// regex pattern /(?<!\d)\d{1,6}(?!\d)/g
+// new RegExp("(?<!\\d)\\d{1,6}(?!\\d)", "g")
 
 // removes duplicated values in an array
 function rmDuple(array) {
@@ -27,9 +28,13 @@ $(document).ready(function () {
 
     $('form').on('submit', function (e) {
         e.preventDefault(); // prevents the form to action by itself
+        const form_field = $(this).serializeArray();
 
+        console.log(form_field)
+        
         // breaks down all 1 and 6 digit nuke codes
-        let broken_codes = rmDuple($(this).find('textarea').val().match(/(?<!\d)\d{1,6}(?!\d)/g));
+        const regex = new RegExp("(?<!\\d)\\d{" + form_field[1].value + ",6}(?!\\d)", "g");
+        let broken_codes = rmDuple(form_field[0].value.match(regex));
         console.log(broken_codes);
 
         $('#aftermath-list h4').html(`Found ${broken_codes ? broken_codes.length : 0} nuke code(s)!`);

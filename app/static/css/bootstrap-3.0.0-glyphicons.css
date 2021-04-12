@@ -18,3 +18,7 @@
 .glyphicon-new-window:before {
     content: "\e164";
 }
+
+.glyphicon-info-sign:before {
+    content: "\e086";
+}
