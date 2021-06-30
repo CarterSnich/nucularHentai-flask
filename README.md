@@ -12,7 +12,6 @@
 
 Did you just stumbled upon a bunch of codes posted on Facebook or somewhere? And you wanna check out each all of them but having a trouble to copy-and-paste each code, especially because there are other stupid texts mixed with the codes. No worries! This web app will breakdown each code and displays each basic details for you. 😉
 
-<br>
 
 ## Basic Usage
 
@@ -28,16 +27,14 @@ You will be provided with the following info for each code:
 - Upload date
 - Pages
 
-You can try the codes [here](https://github.com/user/repo/blob/branch/other_file.md).
+You can try the codes [here](/codes/codes.txt).
 
-<br>
 
 ## Plan for updates
 
 - Add more reliable lazy loading for lite reader (currently using an attribute `loading="lazy"`)
 - Asynchronous loading of results
 
-<br>
 
 ## Get In Touch
 
